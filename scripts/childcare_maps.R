@@ -59,9 +59,10 @@ tmap_mode('view')
 tmap_options(check.and.fix = TRUE)
 
 tm_shape(wy.ch) + 
-  tm_polygons('Childcare accessibility', palette = 'viridis', style = 'fisher', alpha = 0.5) +
+  tm_polygons('Childcare accessibility', palette = 'viridis', style = 'fisher', alpha = 0.4, id = 'localauthname') +
   # tm_polygons('Childcare accessibility', palette = '-BrBG', style = 'fisher', alpha = 0.5)
-  
+  tm_shape(wy.la) +
+  tm_borders(lwd = 4)
 
 
 
