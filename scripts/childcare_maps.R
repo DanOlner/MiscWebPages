@@ -3,6 +3,8 @@ library(tidyverse)
 library(sf)
 library(tmap)
 
+library("PerformanceAnalytics")
+
 
 #GET DATA----
 
@@ -59,10 +61,19 @@ tmap_mode('view')
 tmap_options(check.and.fix = TRUE)
 
 tm_shape(wy.ch) + 
-  tm_polygons('Childcare accessibility', palette = 'viridis', style = 'fisher', alpha = 0.4, id = 'localauthname') +
+  # tm_polygons('Childcare accessibility', palette = 'viridis', style = 'fisher', alpha = 0.4, id = 'localauthname') +
+  tm_polygons('Childcare accessibility', palette = 'RdYlGn', style = 'fisher', alpha = 0.4, id = 'localauthname') +
   # tm_polygons('Childcare accessibility', palette = '-BrBG', style = 'fisher', alpha = 0.5)
   tm_shape(wy.la) +
   tm_borders(lwd = 4)
+
+
+#Driving vs public transport is interesting
+chart.Correlation(wy.ch %>% st_set_geometry(NULL) %>% select(`Childcare accessibility`:`Childcare accessibility - good or outstanding places (overall)`), histogram=TRUE, pch=19)
+
+
+
+
 
 
 
